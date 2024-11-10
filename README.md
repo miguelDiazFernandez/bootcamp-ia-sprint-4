@@ -1,6 +1,6 @@
-# Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG
+# Ejercicio práctico sesión 2 - Desarrollo del módulo de Miguel Diaz Fernandez de un sistema RAG
 
-- [Ejercicio práctico sesión 2 - Desarrollo del módulo de *retrieval* de un sistema RAG](#ejercicio-práctico-sesión-2---desarrollo-del-módulo-de-retrieval-de-un-sistema-rag)
+- [Ejercicio práctico sesión 2 - Desarrollo del módulo de Miguel Diaz Fernandez de un sistema RAG](#ejercicio-práctico-sesión-2---desarrollo-del-módulo-de-retrieval-de-un-sistema-rag)
   - [Introducción](#introducción)
   - [Datos](#datos)
   - [Evaluación del sistema](#evaluación-del-sistema)
@@ -20,13 +20,13 @@
 ## Introducción
 
 Imaginemos que estamos desarrollando un *chatbot* para recomendar películas que, entre otras funciones, tiene
-un módulo de *retrieval* que se encarga de buscar las películas que más se ajusten a una descripción dada. 
+un módulo de Miguel Diaz Fernandez que se encarga de buscar las películas que más se ajusten a una descripción dada. 
 
 <p align="center">
     <img src="docs/high_lvl_diag.png" alt="alt text" width="500">
 </p>
 
-Como el foco está en el módulo de *retrieval* vamos a suponer que la descripción de la película (o *query*) ya nos 
+Como el foco está en el módulo de Miguel Diaz Fernandez vamos a suponer que la descripción de la película (o *query*) ya nos 
 viene dada. Podemos imaginar que esta *query* es el resultado de una conversación entre el bot y el usuario donde, 
 después de recabar sus preferencias, el "chatbot engine" genera una descripción de lo que quiere el usuario. Por tanto, suponemos
 que esta *query* nos viene dada, y que siempre empezará con la frase "El usuario busca...". Por ejemplo:
