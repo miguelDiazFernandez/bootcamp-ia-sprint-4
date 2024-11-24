@@ -25,6 +25,34 @@ def create_docs_to_embedd(movies: list[Movie], config: config.RetrievalExpsConfi
 
 
 def get_synopsys_txt(movie: Movie) -> str:
-    return movie.synopsis
+    return movie.synopsis or "Sinopsis no disponible"
 
-# def ...
+def get_title_and_synopsys_txt(movie: Movie) -> str:
+
+    title = movie.title_original or "Título desconocido"
+    synopsis = movie.synopsis or "Sinopsis no disponible"
+    return f"{title}: {synopsis}"
+
+def get_title_genre_synopsis_txt(movie: Movie) -> str:
+
+    title = movie.title_original or "Título desconocido"
+    genres = (movie.genre_tags or "Géneros no disponibles").replace(";", ", ")
+    synopsis = movie.synopsis or "Sinopsis no disponible"
+    return f"Título: {title}\nGéneros: {genres}\nSinopsis: {synopsis}"
+
+def get_extended_info_txt(movie: Movie) -> str:
+
+    title = movie.title_original or "Título desconocido"
+    genres = (movie.genre_tags or "Géneros no disponibles").replace(";", ", ")
+    directors = movie.director_top_5 or "Director no disponible"
+    synopsis = movie.synopsis or "Sinopsis no disponible"
+    return (f"Título: {title}\n"
+            f"Géneros: {genres}\n"
+            f"Director: {directors}\n"
+            f"Sinopsis: {synopsis}")
+
+def get_minimal_info_txt(movie: Movie) -> str:
+
+    title = movie.title_original or "Título desconocido"
+    genres = (movie.genre_tags or "Géneros no disponibles").replace(";", ", ")
+    return f"Título: {title}\nGéneros: {genres}"

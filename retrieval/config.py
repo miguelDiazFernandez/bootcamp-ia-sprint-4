@@ -16,17 +16,49 @@ class RetrievalExpsConfig:
     s
     """
 
-    def __init__(self):
+    def __init__(
+        self,
+        text_to_embed_fn: Callable[[Movie], str] = get_synopsys_txt,
+        query_prepro_fn: Callable[[str], str] = clean_query_txt,
+        model_name: str = "all-MiniLM-L6-v2",
+        normalize_embeddings: bool = False,
+    ):
+        # Configuración inicial
+        self._text_to_embed_fn: Callable[[Movie], str] = text_to_embed_fn
+        self._query_prepro_fn: Callable[[str], str] = query_prepro_fn
+        self.model_name: str = model_name
+        self.normalize_embeddings: bool = normalize_embeddings
 
-        # Función a emplear para generar el texto a indexar con embeddings; Debe tomar como input un objeto `Movie` y devolver un string
-        self._text_to_embed_fn: Callable = get_synopsys_txt
+        # Validación de funciones y parámetros
+        self._validate_functions()
 
-        # Parámetros para la generación de embeddings
+    def _validate_functions(self):
+        """
+        Valida que las funciones y configuraciones sean correctas.
+        Lanza un ValueError si alguna validación falla.
+        """
+        if not callable(self._text_to_embed_fn):
+            raise ValueError("El atributo _text_to_embed_fn debe ser una función válida que reciba un objeto `Movie` y devuelva un string.")
+        if not callable(self._query_prepro_fn):
+            raise ValueError("El atributo _query_prepro_fn debe ser una función válida que reciba un string y devuelva un string.")
+        if not isinstance(self.model_name, str) or not self.model_name:
+            raise ValueError("El atributo model_name debe ser una cadena no vacía.")
+        if not isinstance(self.normalize_embeddings, bool):
+            raise ValueError("El atributo normalize_embeddings debe ser un valor booleano.")
 
-        self.model_name: str = "all-MiniLM-L6-v2"
-        self.normalize_embeddings: bool = False  # Normalizar los embeddings a longitud 1 antes de indexarlos
-
-        self._query_prepro_fn: Callable = clean_query_txt
+    ## NO MODIFICAR A PARTIR DE AQUÍ ##
+        """
+        Valida que las funciones y configuraciones sean correctas.
+        Lanza un ValueError si alguna validación falla.
+        """
+        if not callable(self._text_to_embed_fn):
+            raise ValueError("El atributo _text_to_embed_fn debe ser una función válida que reciba un objeto `Movie` y devuelva un string.")
+        if not callable(self._query_prepro_fn):
+            raise ValueError("El atributo _query_prepro_fn debe ser una función válida que reciba un string y devuelva un string.")
+        if not isinstance(self.model_name, str) or not self.model_name:
+            raise ValueError("El atributo model_name debe ser una cadena no vacía.")
+        if not isinstance(self.normalize_embeddings, bool):
+            raise ValueError("El atributo normalize_embeddings debe ser un valor booleano.")
 
     ## NO MODIFICAR A PARTIR DE AQUÍ ##
 
